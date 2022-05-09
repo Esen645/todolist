@@ -34,6 +34,7 @@ class _HomepageState extends State<Homepage> {
                           "Hello User Welcome to App this is a default task that you can edit of delete to start using the app",
                     ),
                        TaskCardWidget(),
+                       TaskCardWidget(),
                   ],
                 ),
                 Positioned(
