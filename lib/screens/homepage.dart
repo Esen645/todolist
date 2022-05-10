@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo/widgets.dart';
+import 'package:todo/screens/taskpage.dart';
+import 'package:todo/widget.dart';
+
 
 class Homepage extends StatefulWidget {
   @override
@@ -25,27 +27,58 @@ class _HomepageState extends State<Homepage> {
                       child: Image(
                         width: 150,
                         height: 150,
-                        image: AssetImage("assets/images/a.png"),
+                        image: AssetImage("assets/images/a.png"
+                        ),
                       ),
                     ),
-                    TaskCardWidget(
-                      title: "Get Started",
-                      desc:
-                          "Hello User Welcome to App this is a default task that you can edit of delete to start using the app",
+                     Expanded(
+                     child: ScrollConfiguration(behavior: NoGlowBehaviour(),
+                      child: ListView(
+                        children: [
+                          TaskCardWidget(title: "get start", desc: " hello user",),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                      ],
+                      ),
                     ),
-                       TaskCardWidget(),
-                       TaskCardWidget(),
+                  ),
                   ],
                 ),
-                Positioned(
-                  bottom: 0.0,
-                  right: 0.0,
+              Positioned(
+                bottom: 24,
+                right: 0,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => Taskpage(),
+                    ),
+                    );
+                  },
                   child: Container(
-                    decoration:
-                        BoxDecoration(color: Colors.deepPurpleAccent[700]),
-                    child: Image(image: AssetImage("assets/images/s.png")),
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF7349FE),Color(0xFF643FDB)
+                        ],
+                        begin: Alignment(0,-1),
+                        end: Alignment(0,1),
+                      ),
+
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image(
+                      image: AssetImage(
+                          "assets/images/s.png"
+                      ),
+                    ),
                   ),
-                )
+                ),
+              ),
               ],
             )),
       ),
