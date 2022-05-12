@@ -32,16 +32,23 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                      Expanded(
-                     child: ScrollConfiguration(behavior: NoGlowBehaviour(),
-                      child: ListView(
-                        children: [
-                          TaskCardWidget(title: "get start", desc: " hello user",),
-                          TaskCardWidget(),
-                          TaskCardWidget(),
-                          TaskCardWidget(),
-                          TaskCardWidget(),
-                      ],
-                      ),
+                     child: FutureBuilder(
+
+                      future: _dbHelper.getTasks(),
+                      builder: (context, AsyncSnapshot<List<Task>> snapshot){
+                        return ScrollConfiguration(
+                          behavior: NoGlowBehaviour(),
+                          child: ListView.builder(
+                            itemCount:  snapshot.hasData ? snapshot.data!.length : 0,
+                              itemBuilder: (context, index){
+                              return TaskCardWidget(
+                                title: snapshot.data![index].title,
+                                desc:  snapshot.data![index].description,
+                              );
+                              }
+                          ),
+                        );
+                      },
                     ),
                   ),
                   ],
@@ -51,10 +58,16 @@ class _HomepageState extends State<Homepage> {
                 right: 0,
                 child: GestureDetector(
                   onTap: (){
-                    Navigator.push(
+                   Navigator.push(
                       context, MaterialPageRoute(
                       builder: (context) => Taskpage(),
                     ),
+                    ).then((value){
+                      setState(() {
+
+                      }
+                      );
+                    }
                     );
                   },
                   child: Container(
@@ -73,7 +86,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                     child: Image(
                       image: AssetImage(
-                          "assets/images/s.png"
+                          "assets/images/plus.png"
                       ),
                     ),
                   ),

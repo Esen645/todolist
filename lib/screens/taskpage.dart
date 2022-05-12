@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:todo/database_helper.dart';
+import 'package:todo/model/task.dart';
 import 'package:todo/widget.dart';
+
 
 class Taskpage extends StatefulWidget {
   const Taskpage({Key? key}) : super(key: key);
@@ -20,10 +24,9 @@ class _TaskpageState extends State<Taskpage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:  EdgeInsets.only(
+                    padding: const  EdgeInsets.only(
                       top: 24,
                       bottom: 6,
-
                     ),
                     child: Row(
                       children: [
@@ -31,8 +34,8 @@ class _TaskpageState extends State<Taskpage> {
                           onTap: (){
                            Navigator.pop(context);
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(24.0),
+                          child:const  Padding(
+                            padding: EdgeInsets.all(24.0),
                             child: Image(
                               image: AssetImage(
                                   "assets/images/left-ok.png"
@@ -42,11 +45,22 @@ class _TaskpageState extends State<Taskpage> {
                         ),
                         Expanded(
                           child: TextField(
-                            decoration: InputDecoration(
+                            onSubmitted:(value) async{
+
+                              if(value != ""){
+                                DatabaseHelper _dbHelper = DatabaseHelper();
+                               Task _newTask = Task(
+                                 title: value,
+                               );
+                                await _dbHelper.insertTask(_newTask);
+
+                              }
+                            },
+                            decoration:const  InputDecoration(
                               hintText: "Enter Task Title...",
                               border: InputBorder.none,
                             ) ,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF211551),
@@ -56,7 +70,7 @@ class _TaskpageState extends State<Taskpage> {
                       ],
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding:  EdgeInsets.only(
                         bottom: 12.0,
                     ),
@@ -70,17 +84,17 @@ class _TaskpageState extends State<Taskpage> {
                       ) ,
                     ),
                   ),
-                  TodoWidget(
+                 const  TodoWidget(
                     text:"creat your first task ",
                     isDone: true,
                   ),
-                  TodoWidget(
+                  const TodoWidget(
                       text:"creat your first todo as well" ,
                     isDone: false
                   ),
-                  TodoWidget( text: "just another todo",
+                  const TodoWidget( text: "just another todo",
                   isDone: false,),
-                  TodoWidget( isDone: true,),
+                 const  TodoWidget( isDone: true,),
                 ],
               ),
               Positioned(
@@ -90,7 +104,7 @@ class _TaskpageState extends State<Taskpage> {
                   onTap: (){
                     Navigator.push(
                       context, MaterialPageRoute(
-                      builder: (context) => Taskpage(),
+                      builder: (context) => const Taskpage(),
                     ),
                     );
                   },
@@ -101,7 +115,7 @@ class _TaskpageState extends State<Taskpage> {
                       color: Color(0xFFFE3577),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Image(
+                    child: const Image(
                       image: AssetImage(
                           "assets/images/delete-16.gif"
                       ),
