@@ -14,7 +14,7 @@ class TaskCardWidget extends StatelessWidget {
         vertical: 32.0,
         horizontal: 24.0,
       ),
-      margin: EdgeInsets.only(bottom: 20.0),
+      margin: const EdgeInsets.only(bottom: 20.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.0),
@@ -53,10 +53,11 @@ final  String? text;
 final bool isDone;
 
   const TodoWidget({Key? key, this.text,  required this.isDone}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const  EdgeInsets.symmetric(
         horizontal: 24,
         vertical: 8,
       ),
@@ -65,18 +66,18 @@ final bool isDone;
           Container(
             width: 20,
             height: 20,
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               right: 12,
             ),
             decoration: BoxDecoration(
-              color: isDone ? Color(0xFF7349FE):Colors.transparent,
+              color: isDone ? const Color(0xFF7349FE):Colors.transparent,
               borderRadius: BorderRadius.circular(6),
               border: isDone ? null: Border.all(
-                color:Color(0xFF86829D),
+                color:const Color(0xFF86829D),
                 width: 1.5,
               ),
             ),
-            child: Image(
+            child: const Image(
               image: AssetImage(
                   "assets/images/check-16.gif"
               ),

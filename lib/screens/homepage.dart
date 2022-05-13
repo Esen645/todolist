@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo/database_helper.dart';
+import 'package:todo/model/task.dart';
 import 'package:todo/screens/taskpage.dart';
 import 'package:todo/widget.dart';
 
@@ -16,14 +18,15 @@ class _HomepageState extends State<Homepage> {
         child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-            color: Color(0xFFF6F6F6),
+            color: const Color(0xFFF6F6F6),
             child: Stack(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(bottom: 32),
+                      margin: EdgeInsets.only(  top: 32.0,
+                      bottom: 32.0,),
                       child: Image(
                         width: 150,
                         height: 150,
@@ -41,18 +44,35 @@ class _HomepageState extends State<Homepage> {
                           child: ListView.builder(
                             itemCount:  snapshot.hasData ? snapshot.data!.length : 0,
                               itemBuilder: (context, index){
-                              return TaskCardWidget(
-                                title: snapshot.data![index].title,
-                                desc:  snapshot.data![index].description,
+                                          return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Taskpage(
+                                        task: snapshot.data![index],
+                                      ),
+                                    ),
+                                  ).then(
+                                        (value) {
+                                      setState(() {});
+                                    },
+                                  );
+                                },
+                                child: TaskCardWidget(
+                                  title: snapshot.data![index].title,
+                                  desc:  snapshot.data![index].description,
+                                ),
                               );
-                              }
-                          ),
-                        );
-                      },
-                    ),
+                            );
+                          }
+                         ),
+                      );
+                    },  
                   ),
-                  ],
-                ),
+                )
+              ],
+            ),
               Positioned(
                 bottom: 24,
                 right: 0,
@@ -91,9 +111,10 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
-              ),
-              ],
-            )),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
