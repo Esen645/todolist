@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:todo/database_helper.dart';
-import 'package:todo/model/task.dart';
-import 'package:todo/model/todo.dart';
-import 'package:todo/widget.dart';
+import 'package:todo_altiiki/database_helper.dart';
+import 'package:todo_altiiki/model/task.dart';
+import 'package:todo_altiiki/model/todo.dart';
+import 'package:todo_altiiki/widget.dart';
 
 
 class Taskpage extends StatefulWidget {
@@ -22,13 +22,13 @@ class _TaskpageState extends State<Taskpage> {
   String _taskTitle = "";
   String _taskDescription = "";
 
-  FocusNode ? _titleFocus;
-  FocusNode ?_descriptionFocus;
-  FocusNode ? _todoFocus;
+  FocusNode? _titleFocus;
+  FocusNode? _descriptionFocus;
+  FocusNode? _todoFocus;
 
   bool _contentVisile = false;
 
-    @override
+  @override
   void initState() {
     if (widget.task != null) {
       // Set visibility to true
@@ -45,7 +45,8 @@ class _TaskpageState extends State<Taskpage> {
 
     super.initState();
   }
-    @override
+
+  @override
   void dispose() {
     _titleFocus!.dispose();
     _descriptionFocus!.dispose();
@@ -54,7 +55,6 @@ class _TaskpageState extends State<Taskpage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,67 +62,68 @@ class _TaskpageState extends State<Taskpage> {
         child: Container(
           child: Stack(
             children: [
-               Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const  EdgeInsets.only(
-                      top: 24,
-                      bottom: 6,
+                    padding: const EdgeInsets.only(
+                      top: 24.0,
+                      bottom: 6.0,
                     ),
                     child: Row(
                       children: [
                         InkWell(
-                          onTap: (){
-                           Navigator.pop(context);
+                          onTap: () {
+                            Navigator.pop(context);
                           },
-                          child:const  Padding(
-                            padding: EdgeInsets.all(24.0),
+                          child: const Padding(
+                            padding: const EdgeInsets.all(24.0),
                             child: Image(
                               image: AssetImage(
-                                  "assets/images/left-ok.png"
-                              ),
+                                  'assets/images/back_arrow_icon.png'),
                             ),
                           ),
                         ),
                         Expanded(
                           child: TextField(
                             focusNode: _titleFocus,
-                            onSubmitted:(value) async{
-
-                              if(value != ""){
+                            onSubmitted: (value) async {
+                              // Check if the field is not empty
+                              if (value != "") {
+                                // Check if the task is null
                                 if (widget.task == null) {
                                   Task _newTask = Task(title: value);
-                                  _taskId = await _dbHelper.insertTask(_newTask);
+                                  _taskId =
+                                      await _dbHelper.insertTask(_newTask);
                                   setState(() {
                                     _contentVisile = true;
                                     _taskTitle = value;
                                   });
                                 } else {
-                                  await _dbHelper.updateTaskTitle(_taskId, value);
-                                   print("Task Updated");
+                                  await _dbHelper.updateTaskTitle(
+                                      _taskId, value);
+                                  print("Task Updated");
                                 }
                                 _descriptionFocus!.requestFocus();
-
                               }
                             },
-                               controller: TextEditingController()
+                            controller: TextEditingController()
                               ..text = _taskTitle,
-                            decoration:const  InputDecoration(
-                              hintText: "Enter Task Title...",
+                            decoration: const InputDecoration(
+                              hintText: "Enter Task Title",
                               border: InputBorder.none,
-                            ) ,
+                            ),
                             style: const TextStyle(
-                              fontSize: 26,
+                              fontSize: 26.0,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF211551),
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),
-                 Visibility(
+                  Visibility(
                     visible: _contentVisile,
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -131,15 +132,17 @@ class _TaskpageState extends State<Taskpage> {
                       child: TextField(
                         focusNode: _descriptionFocus,
                         onSubmitted: (value) async {
-                          if(value != ""){
-                            if(_taskId != 0){
-                              await _dbHelper.updateTaskDescription(_taskId, value);
+                          if (value != "") {
+                            if (_taskId != 0) {
+                              await _dbHelper.updateTaskDescription(
+                                  _taskId, value);
                               _taskDescription = value;
                             }
                           }
                           _todoFocus!.requestFocus();
                         },
-                        controller: TextEditingController()..text = _taskDescription,
+                        controller: TextEditingController()
+                          ..text = _taskDescription,
                         decoration: const InputDecoration(
                           hintText: "Enter Description for the task...",
                           border: InputBorder.none,
@@ -153,18 +156,22 @@ class _TaskpageState extends State<Taskpage> {
                   Visibility(
                     visible: _contentVisile,
                     child: FutureBuilder(
+                      initialData: [],
                       future: _dbHelper.getTodo(_taskId),
-                      builder: (context,  AsyncSnapshot<List<Todo>>  snapshot) {
+                      builder: (context, AsyncSnapshot snapshot) {
                         return Expanded(
                           child: ListView.builder(
-                            itemCount:  snapshot.hasData ? snapshot.data!.length : 0,
+                            itemCount:
+                                snapshot.hasData ? snapshot.data!.length : 0,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () async {
-                                  if(snapshot.data![index].isDone == 0){
-                                    await _dbHelper.updateTodoDone(snapshot.data![index].id!, 1);
+                                  if (snapshot.data![index].isDone == 0) {
+                                    await _dbHelper.updateTodoDone(
+                                        snapshot.data![index].id!, 1);
                                   } else {
-                                    await _dbHelper.updateTodoDone(snapshot.data![index].id!, 0);
+                                    await _dbHelper.updateTodoDone(
+                                        snapshot.data![index].id!, 0);
                                   }
                                   setState(() {});
                                 },
@@ -199,7 +206,8 @@ class _TaskpageState extends State<Taskpage> {
                                 color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(6.0),
                                 border: Border.all(
-                                    color: const Color(0xFF86829D), width: 1.5)),
+                                    color: const Color(0xFF86829D),
+                                    width: 1.5)),
                             child: const Image(
                               image: AssetImage('assets/images/check_icon.png'),
                             ),
@@ -245,7 +253,7 @@ class _TaskpageState extends State<Taskpage> {
                   right: 24.0,
                   child: GestureDetector(
                     onTap: () async {
-                      if(_taskId != 0) {
+                      if (_taskId != 0) {
                         await _dbHelper.deleteTask(_taskId);
                         Navigator.pop(context);
                       }

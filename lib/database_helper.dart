@@ -1,10 +1,11 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:todo/model/task.dart';
-import 'package:todo/model/todo.dart';
+import 'package:todo_altiiki/model/task.dart';
+import 'package:todo_altiiki/model/todo.dart';
 
-class DatabaseHelper{
-Future<Database> database() async{
+class DatabaseHelper {
+
+  Future<Database> database() async {
     return openDatabase(
       join(await getDatabasesPath(), 'todo.db'),
       onCreate: (db, version) async {
@@ -17,14 +18,16 @@ Future<Database> database() async{
     );
   }
 
-Future<int> insertTask(Task task) async{
-int taskId = 0;
-  Database _db= await database();
-await _db.insert('tasks', task.toMap(), conflictAlgorithm: ConflictAlgorithm.replace).then((value) {
+  Future<int> insertTask(Task task) async {
+    int taskId = 0;
+    Database _db = await database();
+    await _db.insert('tasks', task.toMap(), conflictAlgorithm: ConflictAlgorithm.replace).then((value) {
       taskId = value;
     });
-}
-Future<void> updateTaskTitle(int id, String title) async {
+    return taskId;
+  }
+
+  Future<void> updateTaskTitle(int id, String title) async {
     Database _db = await database();
     await _db.rawUpdate("UPDATE tasks SET title = '$title' WHERE id = '$id'");
   }
