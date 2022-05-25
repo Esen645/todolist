@@ -14,10 +14,12 @@ class TaskCardWidget extends StatelessWidget {
         vertical: 32.0,
         horizontal: 24.0,
       ),
-      margin: const EdgeInsets.only(bottom: 20.0),
+         margin: const EdgeInsets.only(
+        bottom: 20.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +40,7 @@ class TaskCardWidget extends StatelessWidget {
               desc ?? "(No Description added")",
               style: TextStyle(
                 fontSize: 16.0,
-                color: Colors.deepPurpleAccent[700],
+                color: Color(0xFF86829D),
                 height: 1.5,
               ),
             ),

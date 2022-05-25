@@ -1,0 +1,113 @@
+{
+  "project_info": {
+    "project_number": "17444801969",
+    "project_id": "todolist-bb087",
+    "storage_bucket": "todolist-bb087.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17444801969:android:3c657f207c8a361d8ac190",
+        "android_client_info": {
+          "package_name": "com.a.b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGI7qupoprgpAzJibRBeq9brstaFVkC4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17444801969:android:531b26de142673b38ac190",
+        "android_client_info": {
+          "package_name": "com.example.todo_altibir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17444801969-kvgb2mah8vr2ps8pdm7imf037h7i499r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_altibir",
+            "certificate_hash": "31768931974abd9b950b6d286ad155cb2c2c8ec3"
+          }
+        },
+        {
+          "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGI7qupoprgpAzJibRBeq9brstaFVkC4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17444801969:android:a022ea5e2223306b8ac190",
+        "android_client_info": {
+          "package_name": "com.example.todo_altiiki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17444801969-1iud119rkigcm7segdefitr43midhgk5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo_altiiki",
+            "certificate_hash": "31768931974abd9b950b6d286ad155cb2c2c8ec3"
+          }
+        },
+        {
+          "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGI7qupoprgpAzJibRBeq9brstaFVkC4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17444801969-s06p1q6k9hspgeiqdouseb79nul2ft29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
