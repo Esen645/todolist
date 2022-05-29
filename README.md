@@ -1,6 +1,10 @@
 # todo_altiiki
-
-A new Flutter project.
+versiyon:
+compileSdkVersion 31
+ 
+  defaultConfig:
+  minSdkVersion 19
+  targetSdkVersion 31
 
 ## Getting Started
 
